@@ -9,7 +9,7 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme } from "antd";
+import { Layout, Menu, Button, theme, Avatar } from "antd";
 import SidebarMenu from "../menus/SidebarMenu";
 import SidebarOne from "../sidebars/SidebarOne";
 
@@ -27,7 +27,7 @@ const HomePage: React.FC = () => {
       <Layout className="h-screen overflow-y-auto">
         <Header
           style={{ padding: 0, background: colorBgContainer }}
-          className="sticky top-0 z-10"
+          className="sticky top-0 z-10 flex justify-between items-center"
         >
           <Button
             type="text"
@@ -39,6 +39,7 @@ const HomePage: React.FC = () => {
               height: 64,
             }}
           />
+          <Avatar icon={<UserOutlined />} />
         </Header>
         <Content
           style={{
