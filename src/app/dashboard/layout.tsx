@@ -1,5 +1,6 @@
 "use client";
 
+import SidebarOne from "@/components/sidebars/SidebarOne";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,11 +9,14 @@ import {
 import { Avatar, Button, Layout, theme } from "antd";
 import { Footer } from "antd/es/layout/layout";
 import React, { useState } from "react";
-import SidebarOne from "../sidebars/SidebarOne";
 
 const { Header, Content } = Layout;
 
-const HomePage: React.FC = () => {
+export default function DashboardLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -48,7 +52,7 @@ const HomePage: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          {children}
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyrights ©{new Date().getFullYear()} Created by Emran Ibn Shayed
@@ -56,6 +60,4 @@ const HomePage: React.FC = () => {
       </Layout>
     </Layout>
   );
-};
-
-export default HomePage;
+}
