@@ -2,12 +2,14 @@
 
 import SidebarOne from "@/components/sidebars/SidebarOne";
 import {
+  ArrowLeftOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import { Avatar, Button, Layout, theme } from "antd";
 import { Footer } from "antd/es/layout/layout";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const { Header, Content } = Layout;
@@ -17,6 +19,7 @@ export default function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -50,9 +53,19 @@ export default function DashboardLayout({
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
+            position: "relative",
           }}
         >
           {children}
+          <div className="absolute bottom-5 right-5">
+            <Button
+              onClick={() => router.back()}
+              icon={<ArrowLeftOutlined />}
+              type="primary"
+              shape="circle"
+              size="large"
+            />
+          </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Copyrights ©{new Date().getFullYear()} Created by Emran Ibn Shayed
