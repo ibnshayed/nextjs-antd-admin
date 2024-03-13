@@ -24,7 +24,6 @@ const AdminPages = () => {
     }
   `;
   const { loading, error, data } = useQuery(GET_USERS);
-  console.log("🚀 ~ AdminPages ~ data:", data);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;

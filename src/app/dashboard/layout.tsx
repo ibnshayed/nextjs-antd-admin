@@ -26,48 +26,44 @@ export default function DashboardLayout({
   } = theme.useToken();
 
   return (
-    <Layout hasSider>
+    <Layout hasSider className="h-screen overflow-hidden">
       <SidebarOne open={collapsed} setOpen={setCollapsed} />
-      <Layout className="h-screen overflow-y-auto">
-        <Header
-          // style={{ background: colorBgContainer }}
-          className="sticky top-0 z-10 flex justify-between items-center !pl-2 !pr-4 !bg-white"
-        >
+      <Layout>
+        <Header className="sticky top-0 z-10 flex justify-between items-center !pl-2 !pr-4 !bg-white">
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
-            // style={{
-            //   fontSize: "16px",
-            //   width: 50,
-            //   height: 50,
-            // }}
             className="!w-10 !h-10 !text-lg"
           />
           <Avatar icon={<UserOutlined />} size={40} />
         </Header>
         <Content
+          className="overflow-y-auto mx-6 mt-4"
           style={{
-            margin: "24px 16px",
+            // margin: "24px 16px",
             padding: 24,
-            minHeight: 280,
+            // minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
             position: "relative",
           }}
         >
-          {children}
-          <div className="absolute bottom-5 right-5">
-            <Button
-              onClick={() => router.back()}
-              icon={<ArrowLeftOutlined />}
-              type="primary"
-              shape="circle"
-              size="large"
-            />
-          </div>
+          <>
+            {children}
+
+            <div className="absolute bottom-5 right-5">
+              <Button
+                onClick={() => router.back()}
+                icon={<ArrowLeftOutlined />}
+                type="primary"
+                shape="circle"
+                size="large"
+              />
+            </div>
+          </>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
+        <Footer className="text-center !py-4">
           Copyrights ©{new Date().getFullYear()} Created by Emran Ibn Shayed
         </Footer>
       </Layout>

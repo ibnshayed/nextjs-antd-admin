@@ -1,8 +1,6 @@
 "use client";
 
 import { gql, useQuery } from "@apollo/client";
-import { Breadcrumb } from "antd";
-import Link from "next/link";
 
 const AdminInfoPage = ({ params }: { params: { id: string } }) => {
   const GET_USER = gql`
@@ -12,7 +10,6 @@ const AdminInfoPage = ({ params }: { params: { id: string } }) => {
         lastName
         email
         username
-        password
         phone
         status
       }

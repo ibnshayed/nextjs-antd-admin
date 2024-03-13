@@ -17,7 +17,7 @@ const SidebarOne = ({
       trigger={null}
       collapsible
       collapsed={open}
-      className="h-screen overflow-auto fixed left-0 top-0 bottom-0"
+      // className="h-screen overflow-auto fixed left-0 top-0 bottom-0"
       width={280}
       breakpoint="lg"
       onBreakpoint={(broken) => {
