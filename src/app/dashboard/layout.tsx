@@ -7,12 +7,26 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Avatar, Button, Layout, theme } from "antd";
+import { Avatar, Button, Dropdown, Layout, MenuProps, theme } from "antd";
 import { Footer } from "antd/es/layout/layout";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const { Header, Content } = Layout;
+
+const items: MenuProps["items"] = [
+  {
+    label: <a href="https://www.antgroup.com">Profile</a>,
+    key: "0",
+  },
+  {
+    type: "divider",
+  },
+  {
+    label: <a href="https://www.aliyun.com">Log out</a>,
+    key: "1",
+  },
+];
 
 export default function DashboardLayout({
   children,
@@ -36,7 +50,17 @@ export default function DashboardLayout({
             onClick={() => setCollapsed(!collapsed)}
             className="!w-10 !h-10 !text-lg"
           />
-          <Avatar icon={<UserOutlined />} size={40} />
+
+          <Dropdown
+            menu={{ items }}
+            trigger={["click"]}
+            arrow
+            overlayStyle={{ width: 150 }}
+          >
+            <a onClick={(e) => e.preventDefault()}>
+              <Avatar icon={<UserOutlined />} size={40} />
+            </a>
+          </Dropdown>
         </Header>
         <Content
           className="overflow-y-auto mx-6 mt-4"

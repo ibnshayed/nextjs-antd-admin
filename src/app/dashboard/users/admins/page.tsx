@@ -6,7 +6,7 @@ import {
   PlusOutlined,
 } from "@ant-design/icons";
 import { gql, useQuery } from "@apollo/client";
-import { Button, Space, Table } from "antd";
+import { Button, Space, Spin, Table } from "antd";
 import Link from "next/link";
 
 const AdminPages = () => {
@@ -25,7 +25,12 @@ const AdminPages = () => {
   `;
   const { loading, error, data } = useQuery(GET_USERS);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="h-full flex justify-center items-center">
+        <Spin></Spin>
+      </div>
+    );
   if (error) return <p>Error : {error.message}</p>;
 
   const columns = [
