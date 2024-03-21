@@ -2,8 +2,8 @@
 
 import { gql, useLazyQuery } from "@apollo/client";
 import { Button, Checkbox, Form, type FormProps, Input } from "antd";
+import { getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-
 import React, { useEffect, useState } from "react";
 
 type FieldType = {
@@ -14,17 +14,11 @@ type FieldType = {
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
-  const [loginData, setLoginData] = useState(null);
+  const [loginData, setLoginData] = useState(false);
   console.log("🚀 ~ loginData:", loginData);
 
   useEffect(() => {
-    // Check if localStorage is defined before using it
-    if (typeof window !== "undefined" && localStorage.getItem("loginData")) {
-      const lData = JSON.parse(
-        JSON.parse(JSON.stringify(localStorage.getItem("loginData")))
-      );
-      setLoginData(lData);
-    }
+    setLoginData(!!getCookie("accessToken"));
   }, []);
 
   if (loginData) {
@@ -64,7 +58,9 @@ const LoginForm: React.FC = () => {
     });
     if (data) {
       console.log(data);
-      localStorage.setItem("loginData", JSON.stringify(data.login));
+      localStorage.setItem("user", JSON.stringify(data.login.user));
+      setCookie("accessToken", data.login.accessToken);
+      setCookie("refreshToken", data.login.refreshToken);
       router.push("/dashboard");
     }
   };
